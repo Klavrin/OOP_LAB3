@@ -1,7 +1,15 @@
 package lab;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import java.lang.reflect.Type;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class ReadFile {
   private final String filePath; 
@@ -27,6 +35,20 @@ public class ReadFile {
     }
 
     return content.toString();
+  }
+
+  public List<Individual> readSeparately() {
+    Gson gson = new Gson();
+    List<Individual> individuals = new ArrayList<>();
+
+    try (FileReader reader = new FileReader(filePath)) {
+        Type individualListType = new TypeToken<List<Individual>>() {}.getType();
+        individuals = gson.fromJson(reader, individualListType);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return individuals;
   }
 
   public void printFile() {
