@@ -1,3 +1,5 @@
+package lab;
+
 public class Individual {
   private final int id;
   private final boolean isHumanoid;
