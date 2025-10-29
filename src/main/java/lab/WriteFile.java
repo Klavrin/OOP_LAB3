@@ -1,0 +1,60 @@
+package lab;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.Path;
+import java.util.List;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
+
+public class WriteFile {
+  private final String path;
+  private final String dirName = "output";
+  private final String fileName;
+
+  public WriteFile(String path, String fileName) {
+    this.path = path;
+    this.fileName = fileName;
+  }
+
+  public String getPath() {
+    return path;
+  }
+
+  public String getDirName() {
+    return dirName;
+  }
+
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void write(List<Individual> data) {
+    // create directory if it doesn't exist
+    Path dirPath = Paths.get(dirName);
+    if (!Files.exists(dirPath)) {
+      try {
+        Files.createDirectories(Paths.get(path + "/" + dirName));
+      } catch (IOException e) {
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    // write data to file
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    String json = gson.toJson(data);
+
+    Path pathPath = Paths.get(path);
+    Path filePath = pathPath.resolve(dirPath.resolve(fileName + ".json"));
+
+    try {
+      Files.writeString(filePath, json, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+}
