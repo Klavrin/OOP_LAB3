@@ -34,4 +34,10 @@ public class Individual {
   public String[] getPhysicalTraits() {
     return physicalTraits.clone();
   }
+
+  @Override
+  public String toString() {
+    return "{\n Id: " + id + ",\n isHumanoid: " + isHumanoid + ",\n Planet of origin: " + originPlanet + ",\n Age: "
+        + age + "\n},";
+  }
 }
