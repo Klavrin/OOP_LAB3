@@ -15,11 +15,9 @@ import sun.security.util.FilePaths;
 public class WriteFile {
   private final String path;
   private final String dirName = "output";
-  private final String fileName;
 
-  public WriteFile(String path, String fileName) {
+  public WriteFile(String path) {
     this.path = path;
-    this.fileName = fileName;
   }
 
   public String getPath() {
@@ -30,11 +28,7 @@ public class WriteFile {
     return dirName;
   }
 
-  public String getFileName() {
-    return fileName;
-  }
-
-  public void write(List<Individual> data) {
+  public void write(List<Individual> data, String fileName) {
     // create directory (if it doesn't exist)
     Path dirPath = Paths.get(dirName);
     if (!Files.exists(dirPath)) {
