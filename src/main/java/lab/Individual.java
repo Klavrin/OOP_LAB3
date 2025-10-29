@@ -37,6 +37,13 @@ public class Individual {
     return physicalTraits.clone();
   }
 
+  public Species classify() {
+    return Arrays.stream(Species.values())
+      .filter(s -> s.matches(this))
+      .findFirst()
+      .orElse(null);
+  }
+
   @Override
   public String toString() {
     return "{\n Id: " + id + ",\n isHumanoid: " + isHumanoid + ",\n Planet of origin: " + originPlanet + ",\n Age: "
