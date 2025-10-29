@@ -25,3 +25,6 @@ target/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Lab output dir
+/src/main/java/lab/output
