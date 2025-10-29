@@ -10,6 +10,8 @@ import java.util.List;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 
+import sun.security.util.FilePaths;
+
 public class WriteFile {
   private final String path;
   private final String dirName = "output";
@@ -33,7 +35,7 @@ public class WriteFile {
   }
 
   public void write(List<Individual> data) {
-    // create directory if it doesn't exist
+    // create directory (if it doesn't exist)
     Path dirPath = Paths.get(dirName);
     if (!Files.exists(dirPath)) {
       try {
@@ -44,13 +46,23 @@ public class WriteFile {
       }
     }
 
-    // write data to file
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String json = gson.toJson(data);
 
     Path pathPath = Paths.get(path);
     Path filePath = pathPath.resolve(dirPath.resolve(fileName + ".json"));
 
+    // create file (if it doesn't exist)
+    if (!Files.exists(filePath)) {
+      try {
+        Files.createFile(filePath);
+      } catch (IOException e) {
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    // write data to file
     try {
       Files.writeString(filePath, json, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     } catch (IOException e) {
