@@ -12,5 +12,8 @@ public class Main {
     for (int i = 0; i < ind.getPhysicalTraits().length; i++) {
       System.out.println(" - " + physicalTraits[i]);
     }
+
+    ReadFile rf = new ReadFile("input.json");
+    rf.printFile();
   }
 }
