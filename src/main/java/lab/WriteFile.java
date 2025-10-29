@@ -6,11 +6,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-
-import sun.security.util.FilePaths;
 
 public class WriteFile {
   private final String path;
@@ -40,8 +39,14 @@ public class WriteFile {
       }
     }
 
+    // add wrapper around main data (includes `name` and `individuals` attributes)
+    Map<String, Object> wrapper = Map.of(
+      "name", fileName,
+      "individuals", data
+    );
+
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    String json = gson.toJson(data);
+    String json = gson.toJson(wrapper);
 
     Path pathPath = Paths.get(path);
     Path filePath = pathPath.resolve(dirPath.resolve(fileName + ".json"));
