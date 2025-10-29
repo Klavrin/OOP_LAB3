@@ -1,5 +1,7 @@
 package lab;
 
+import java.util.Arrays;
+
 public class Individual {
   private final int id;
   private final boolean isHumanoid;
@@ -38,6 +40,6 @@ public class Individual {
   @Override
   public String toString() {
     return "{\n Id: " + id + ",\n isHumanoid: " + isHumanoid + ",\n Planet of origin: " + originPlanet + ",\n Age: "
-        + age + "\n},";
+        + age + "\n Physical traits: " + Arrays.toString(physicalTraits) + "\n},";
   }
 }
