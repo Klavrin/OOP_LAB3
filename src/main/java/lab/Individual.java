@@ -34,7 +34,7 @@ public class Individual {
   }
 
   public String[] getPhysicalTraits() {
-    return physicalTraits.clone();
+    return physicalTraits;
   }
 
   public Species classify() {
