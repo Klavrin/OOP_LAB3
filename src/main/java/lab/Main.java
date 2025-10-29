@@ -14,7 +14,7 @@ public class Main {
     Gson gson = new Gson();
 
     try {
-      String json = Files.readString(Paths.get("input.json"));
+      String json = Files.readString(Paths.get("src/resources/input.json"));
       TypeToken<List<Individual>> listType = new TypeToken<List<Individual>>() {};
       List<Individual> individuals = gson.fromJson(json, listType.getType());
 
