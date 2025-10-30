@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Individual {
   private final int id;
-  private final boolean isHumanoid;
+  private final Boolean isHumanoid;
   private final String originPlanet;
-  private final int age;
+  private final Integer age;
   private final String[] physicalTraits;
 
   public Individual(int id, boolean isHumanoid, String originPlanet, int age, String[] physicalTraits) {
@@ -21,7 +21,7 @@ public class Individual {
     return id;
   }
 
-  public boolean getIsHumanoid() {
+  public Boolean getIsHumanoid() {
     return isHumanoid;
   }
 
@@ -29,7 +29,7 @@ public class Individual {
     return originPlanet;
   }
 
-  public int getAge() {
+  public Integer getAge() {
     return age;
   }
 
