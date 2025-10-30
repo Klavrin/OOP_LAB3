@@ -33,6 +33,6 @@ public enum Species {
       && originPlanet.equals(ind.getOriginPlanet()) 
       && age.test(ind.getAge())
       && physicalTraits.stream()
-        .allMatch(req -> Arrays.stream(ind.getPhysicalTraits()).anyMatch(t -> t.equals(req)));
+          .anyMatch(req -> Arrays.stream(ind.getPhysicalTraits()).anyMatch(t -> t.equals(req)));
   }
 }
